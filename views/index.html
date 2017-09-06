@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="indexApp">
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+    <script>
+      var app = angular.module('indexApp', []);
+      app.controller('textareaCtrl', function($scope) {
+        $scope.$watch('inputText', function(newValue, oldValue) {
+          $scope.outputText = $scope.inputText;
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div ng-controller="textareaCtrl">
+      <input type="textarea" ng-model="inputText" ng-change="outputText()">
+      <p>{{outputText}}</p>
+    </div>
+  </body>
+</html>
