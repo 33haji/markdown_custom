@@ -2,18 +2,15 @@
 <html ng-app="indexApp">
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/semantic/dist/semantic.min.css" />
+    <link rel='stylesheet' href='/stylesheets/index.css' />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
-    <script>
-      var app = angular.module('indexApp', []);
-      app.controller('textareaCtrl', function($scope) {
-        $scope.$watch('inputText', function(newValue, oldValue) {
-          $scope.outputText = $scope.inputText;
-        });
-      });
-    </script>
+    <script src="/javascripts/index.js"></script>
   </head>
   <body>
+    <div class="ui inverted vertical masthead center aligned segment">
+      <h1 class="ui inverted header">CUSTOM MARKDOWN</h1>
+    </div>
     <div ng-controller="textareaCtrl">
       <input type="textarea" ng-model="inputText" ng-change="outputText()">
       <p>{{outputText}}</p>
