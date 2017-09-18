@@ -1,0 +1,21 @@
+/* Markdown input */
+.input-markdown {
+  margin: 30px 20px 0 20px;
+}
+.input-markdown textarea {
+  width: 100%;
+  height: 100vh;
+  padding: 15px 15px 15px 15px;
+  border: 1px solid rgba(34,36,38,.15);
+  border-radius: .28571429rem;
+  font-size: medium;
+}
+
+/* Markdown output */
+.output-markdown {
+  font-size: medium;
+  height: 100vh;
+  margin: 30px 20px 0 20px;
+  padding: 15px 15px 15px 15px;
+  background-color: #f8f8f9;
+}

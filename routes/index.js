@@ -1,9 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+/* ヘッダー */
+router.get('/header', function(req, res, next) {
+  res.render('header.html');
+});
+/* トップ */
 router.get('/', function(req, res, next) {
-  res.render('index.html', { title: 'Express' });
+  res.render('index.html', { title: 'Custom Markdown' });
 });
 
 module.exports = router;

@@ -1,7 +1,7 @@
 // Markdownの入力と出力
-var app = angular.module('indexApp', []);
-app.controller('textareaCtrl', function($scope) {
-  $scope.$watch('inputText', function(newValue, oldValue) {
-    $scope.outputText = $scope.inputText;
+var app = angular.module('indexApp', ['ngSanitize']);
+app.controller('markdownAreaCtrl', function($scope) {
+  $scope.$watch('inputMarkdown', function(newValue, oldValue) {
+    $scope.outputMarkdown = marked($scope.inputMarkdown);
   });
 });
