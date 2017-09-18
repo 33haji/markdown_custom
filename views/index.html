@@ -2,10 +2,11 @@
 <html ng-app="indexApp">
   <head>
     <title><%= title %></title>
-    <link rel="stylesheet" type="text/css" href="/stylesheets/semantic/dist/semantic.min.css" />
+    <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css" />
     <link rel='stylesheet' href='/stylesheets/index.css' />
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="/semantic/dist/semantic.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-sanitize.min.js"></script>
     <script src="/javascripts/index.js"></script>
@@ -20,6 +21,7 @@
     </script>
     <!-- /ヘッダー -->
 
+    <!-- Markdownの入力と出力 -->
     <div class="ui vertically divided grid">
       <div class="two column row" ng-controller="markdownAreaCtrl">
         <div class="column">
@@ -29,10 +31,11 @@
         </div>
         <div class="column">
           <div class="output-markdown">
-            <div ng-bind-html="outputMarkdown"></div>
+            <div ng-bind-html="outputMarkdown" id="output-markdown-contents"></div>
           </div>
         </div>
       </div>
     </div>
+    <!-- /Markdownの入力と出力 -->
   </body>
 </html>

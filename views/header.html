@@ -1,4 +1,20 @@
 <link rel='stylesheet' href='/stylesheets/header.css' />
+<script src="/javascripts/header.js"></script>
+
 <div class="ui inverted vertical masthead center aligned segment">
+  <a id ="sidebar" href="#"><i class="sidebar icon"></i></a>
   <h1 class="ui inverted header">Custom Markdown</h1>
+</div>
+
+<div id="sidebar-area-content" class="ui vertical menu">
+  <div class="ui left pointing dropdown link item" data-element="h1">
+    <i class="dropdown icon"></i>
+    見出し1
+    <div id="menu-h1" class="menu">
+      <a class="item h1-default"><h1>Default</h1></a>
+      <a class="item h1-red"><h1 style="color: #db2828;">Red</h1></a>
+      <a class="item h1-underline"><h1 style="text-decoration: underline;">UnderLine</h1></a>
+      <a class="item h1-leftLine"><h1 style="border-left: solid 5px #f2711c; padding: 0.25em 0.5em;">LeftLine</h1></a>
+    </div>
+  </div>
 </div>

@@ -4,3 +4,19 @@
   font-size: 3em;
   font-weight: normal;
 }
+i.icon {
+  text-align: left;
+  float: left;
+  font-size: 2em;
+  padding-left: 3%;
+  padding-top: 30px;
+}
+#sidebar {
+  color: #FFF;
+}
+#sidebar-area-content {
+  background-color: #f8f8f9;
+  margin-top: 0;
+  position:absolute;
+  z-index: 1;
+}
