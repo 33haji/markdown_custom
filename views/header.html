@@ -6,7 +6,9 @@
   <h1 class="ui inverted header">Custom Markdown</h1>
 </div>
 
+<!-- サイドバー内部のコンテンツ -->
 <div id="sidebar-area-content" class="ui vertical menu">
+  <!-- 見出し1 -->
   <div class="ui left pointing dropdown link item" data-element="h1">
     <i class="dropdown icon"></i>
     見出し1
@@ -17,4 +19,32 @@
       <a class="item h1-leftLine"><h1 style="border-left: solid 5px #f2711c; padding: 0.25em 0.5em;">LeftLine</h1></a>
     </div>
   </div>
+  <!-- /見出し1 -->
+
+  <!-- 見出し2 -->
+  <div class="ui left pointing dropdown link item" data-element="h2">
+    <i class="dropdown icon"></i>
+    見出し2
+    <div id="menu-h2" class="menu">
+      <a class="item h2-default"><h2>Default</h2></a>
+      <a class="item h2-blue"><h2 style="color: #2185d0;">Blue</h2></a>
+      <a class="item h2-underline"><h2 style="text-decoration: underline;">UnderLine</h2></a>
+      <a class="item h2-leftLine"><h2 style="border-left: solid 5px #00b5ad; padding: 0.25em 0.5em;">LeftLine</h2></a>
+    </div>
+  </div>
+  <!-- /見出し2 -->
+
+  <!-- コード -->
+  <div class="ui left pointing dropdown link item" data-element="code">
+    <i class="dropdown icon"></i>
+    コード
+    <div id="menu-code" class="menu">
+      <a class="item code-default"><p style="background-color: #f7f7f7;padding: 9.5px;">Default</p></a>
+      <a class="item code-red"><p style="background-color: #FFFAFA;color: #db2828;padding: 9.5px;">Red</p></a>
+      <a class="item code-green"><p style="background-color: #F5FFFA;color: #21ba45;padding: 9.5px;">Green</p></a>
+      <a class="item code-blue"><p style="background-color: #F8F8FF;color: #2185d0;padding: 9.5px;">Blue</p></a>
+    </div>
+  </div>
+  <!-- /コード -->
 </div>
+<!-- /サイドバー内部のコンテンツ -->
