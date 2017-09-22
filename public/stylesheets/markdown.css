@@ -1,0 +1,55 @@
+/* 見出し1 */
+.h1-red {
+  color: #db2828;
+}
+.h1-underline {
+  text-decoration: underline;
+}
+.h1-leftLine {
+  border-left: solid 5px #f2711c;
+  padding: 0.25em 0.5em;
+}
+
+/* 見出し2 */
+.h2-blue {
+  color: #2185d0;
+}
+.h2-underline {
+  text-decoration: underline;
+}
+.h2-leftLine {
+  border-left: solid 5px #00b5ad;
+  padding: 0.25em 0.5em;
+}
+
+/* コード */
+.code-default {
+  background-color: #f7f7f7;
+  padding: 9.5px;
+}
+.code-red {
+  background-color: #FFFAFA;
+  color: #db2828;
+  padding: 9.5px;
+}
+.code-green {
+  background-color: #F5FFFA;
+  color: #21ba45;
+  padding: 9.5px;
+}
+.code-blue {
+  background-color: #F8F8FF;
+  color: #2185d0;
+  padding: 9.5px;
+}
+
+/* 強調 */
+.strong-underline {
+  border-bottom: 2px solid #ff3333;
+}
+.strong-red {
+  color: #db2828;
+}
+.strong-background {
+  background-color: #ffff66;
+}
