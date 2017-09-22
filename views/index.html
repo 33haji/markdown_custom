@@ -21,21 +21,23 @@
     </script>
     <!-- /ヘッダー -->
 
-    <!-- Markdownの入力と出力 -->
-    <div class="ui vertically divided grid">
-      <div class="two column row" ng-controller="markdownAreaCtrl">
-        <div class="column">
-          <div class="input-markdown">
-            <textarea placeholder="input text..." ng-model="inputMarkdown" ng-change="outputMarkdown()"></textarea>
+    <div ng-controller="markdownAreaCtrl">
+      <!-- Markdownの入力と出力 -->
+      <div class="ui vertically divided grid">
+        <div class="two column row">
+          <div class="column">
+            <div class="input-markdown">
+              <textarea placeholder="input text..." ng-model="inputMarkdown"></textarea>
+            </div>
           </div>
-        </div>
-        <div class="column">
-          <div class="output-markdown">
-            <div ng-bind-html="outputMarkdown" id="output-markdown-contents"></div>
+          <div class="column">
+            <div class="output-markdown">
+              <div ng-bind-html="outputMarkdown" id="output-markdown-contents" ng-model="test"></div>
+            </div>
           </div>
         </div>
       </div>
+      <!-- /Markdownの入力と出力 -->
     </div>
-    <!-- /Markdownの入力と出力 -->
   </body>
 </html>

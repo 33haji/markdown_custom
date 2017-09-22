@@ -68,6 +68,19 @@ $(function(){
   $(".code-blue").on('click', function(){
     editMarkdownCss("code", "blue");
   });
+  // 強調
+  $(".strong-default").on('click', function(){
+    editMarkdownCss("strong", "default");
+  });
+  $(".strong-underline").on('click', function(){
+    editMarkdownCss("strong", "underline");
+  });
+  $(".strong-red").on('click', function(){
+    editMarkdownCss("strong", "red");
+  });
+  $(".strong-background").on('click', function(){
+    editMarkdownCss("strong", "background");
+  });
   // 初期化
   function initializeMarkdown(){
     // 見出し(h1)
@@ -79,8 +92,11 @@ $(function(){
     // コード
     window.sessionStorage.setItem(['code'],['default']);
     $(".code-default").addClass('active');
+    // 強調
+    window.sessionStorage.setItem(['strong'],['default']);
+    $(".strong-default").addClass('active');
   }
-  // 変更処理
+  // オプションの変更処理
   function editMarkdownCss(tag, element){
     window.sessionStorage.setItem([tag],[element]);
     addActive(tag, "."+ tag +"-"+ element);

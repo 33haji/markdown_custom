@@ -101,5 +101,32 @@ $(function() {
         'padding': '9.5px'
       });
     }
+
+    // 強調
+    var strong = window.sessionStorage.getItem(['strong']);
+    switch (strong){
+      case 'underline':
+        strongDefaultCss();
+        $('.output-markdown strong').css({'border-bottom': '2px solid #ff3333'});
+        break;
+      case 'red':
+        strongDefaultCss();
+        $('.output-markdown strong').css({'color': '#db2828'});
+        break;
+      case 'background':
+        strongDefaultCss();
+        $('.output-markdown strong').css({'background-color': '#ffff66'});
+        break;
+      default:
+        strongDefaultCss();
+        break;
+    }
+    function strongDefaultCss() {
+      $('.output-markdown strong').css({
+        'border-style': 'none',
+        'color': '#000',
+        'background-color': '#FFF'
+      });
+    }
   }
 });
