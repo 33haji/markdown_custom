@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html ng-app="indexApp">
   <head>
-    <title><%= title %></title>
-    <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css" />
+    <title>Custom Markdown</title>
     <link rel='stylesheet' href='/stylesheets/index.css' />
     <link rel='stylesheet' href='/stylesheets/markdown.css' />
+    <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="/semantic/dist/semantic.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
@@ -23,6 +23,7 @@
     <!-- /ヘッダー -->
 
     <div ng-controller="markdownAreaCtrl">
+      <button id="page-button" class="ui green button"><a ng-href="{{url}}">Markdownをページで表示する</a></button>
       <!-- Markdownの入力と出力 -->
       <div class="ui vertically divided grid">
         <div class="two column row">
@@ -33,7 +34,7 @@
           </div>
           <div class="column">
             <div class="output-markdown">
-              <div ng-bind-html="outputMarkdown" id="output-markdown-contents" ng-model="test"></div>
+              <div ng-bind-html="outputMarkdown" id="output-markdown-contents"></div>
             </div>
           </div>
         </div>

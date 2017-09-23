@@ -1,19 +1,17 @@
-/* 入力をMarkdownに変換 */
-var app = angular.module('indexApp', ['ngSanitize']);
-app.controller('markdownAreaCtrl', function($scope) {
-  $scope.$watch('inputMarkdown', function(newValue, oldValue) {
-    // Markdown変換
-    $scope.outputMarkdown = marked(newValue);
-    // ページで表示用のurlを構築
-    $scope.url = 'http://' + location.host + '/page?mdHtml=' + escape($scope.outputMarkdown);
-  });
-});
-
-/* Markdownのstyleを変換 */
-$(function() {
-  $('#output-markdown-contents').on('DOMSubtreeModified propertychange', function() {
-    addCustomMarkdownClass();
-  });
+$(function(){
+  // パラメータを取得
+  var param = new Object;
+  var pair = location.search.substring(1).split('&');
+  for(var i = 0; pair[i]; i++) {
+      var kv = pair[i].split('=');
+      param[kv[0]]=kv[1];
+  }
+  // htmlを取得
+  var html = param.mdHtml;
+  // 表示
+  $('#markdown-contents').html(unescape(html));
+  // cssを適用
+  addCustomMarkdownClass();
 
   /**
    * 各要素ごとにclssを追加(どのclassかという情報はsessionから取得)
@@ -42,10 +40,10 @@ $(function() {
    * @param {string} classElement 要素名(例：default)
    */
   function addAndRemoveClass(tag, classElement) {
-    $('.output-markdown ' + tag).removeClass(function(index, className) {
+    $('#markdown-contents ' + tag).removeClass(function(index, className) {
       reg = new RegExp('\\b'+ tag +'-\\S+', 'g');
       return (className.match(reg) || []).join(' ');
     });
-    $('.output-markdown ' + tag).addClass(tag + '-' + classElement);
+    $('#markdown-contents ' + tag).addClass(tag + '-' + classElement);
   }
 });
