@@ -11,26 +11,26 @@ $(function(){
   // 表示
   $('#markdown-contents').html(unescape(html));
   // cssを適用
-  addCustomMarkdownClass();
+  addCustomMarkdownClass(param);
 
   /**
-   * 各要素ごとにclssを追加(どのclassかという情報はsessionから取得)
+   * 各要素ごとにclssを追加(どのclassかという情報はパラメータから取得)
    */
-  function addCustomMarkdownClass() {
+  function addCustomMarkdownClass(param) {
     // 見出し1(h1)
-    var h1 = window.sessionStorage.getItem(['h1']);
+    var h1 = param.h1;
     addAndRemoveClass('h1', h1);
 
     // 見出し2(h2)
-    var h2 = window.sessionStorage.getItem(['h2']);
+    var h2 = param.h2;
     addAndRemoveClass('h2', h2);
 
     // コード
-    var code = window.sessionStorage.getItem(['code']);
+    var code = param.code;
     addAndRemoveClass('code', code);
 
     // 強調
-    var strong = window.sessionStorage.getItem(['strong']);
+    var strong = param.strong;
     addAndRemoveClass('strong', strong);
   }
 
@@ -44,6 +44,6 @@ $(function(){
       reg = new RegExp('\\b'+ tag +'-\\S+', 'g');
       return (className.match(reg) || []).join(' ');
     });
-    $('#markdown-contents ' + tag).addClass(tag + '-' + classElement);
+    $('#markdown-contents ' + tag).addClass(classElement);
   }
 });

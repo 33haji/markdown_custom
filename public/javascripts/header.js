@@ -27,8 +27,9 @@ $(function(){
     }
   });
 
-  // Markdownのcssの変更(実際の変更処理はindex.js)
-  initializeMarkdown();
+  // メニューの処理を実装
+  // 初期化処理
+  initializeCustomMenu();
   // 見出し1(h1)
   $(".menu-h1-default").on('click', function(){
     editMarkdownCss("h1", "default");
@@ -81,34 +82,37 @@ $(function(){
   $(".menu-strong-background").on('click', function(){
     editMarkdownCss("strong", "background");
   });
-  // 初期化
-  function initializeMarkdown(){
-    // 見出し(h1)
-    window.sessionStorage.setItem(['h1'],['default']);
-    $(".menu-h1-default").addClass('active');
-    // 見出し2(h2)
-    window.sessionStorage.setItem(['h2'],['default']);
-    $(".menu-h2-default").addClass('active');
-    // コード
-    window.sessionStorage.setItem(['code'],['default']);
-    $(".menu-code-default").addClass('active');
-    // 強調
-    window.sessionStorage.setItem(['strong'],['default']);
-    $(".menu-strong-default").addClass('active');
+  /**
+   * カスタムメニューの初期化処理
+   * @return void
+   */
+  function initializeCustomMenu(){
+    // custom要素を設定ファイルから取得
+    customItems = [];
+    $.getJSON("javascripts/conf/customMarkdownItems.json").done(function(data){
+      customItems = data.customItems;
+    });
+    setTimeout(function(){
+      // それぞれのtag要素に対して初期化処理を行う
+      $.each(customItems, function(index, tag) {
+        window.sessionStorage.setItem([tag],['default']);
+        $(".menu-"+ tag +"-default").addClass('active');
+      });
+    }, 100);
   }
-  // オプションの変更処理
-  function editMarkdownCss(tag, element){
-    window.sessionStorage.setItem([tag],[element]);
-    addActive(tag, ".menu-"+ tag +"-"+ element);
-    refreshMarkdown();
-  }
-  // メニューにavtiveクラスを付与
-  function addActive(tag, selector){
+  /**
+   * カスタム情報変更処理
+   * @param  {string} tag     タグ(例：h1)
+   * @param  {string} customName 要素名(例：default)
+   * @return void
+   */
+  function editMarkdownCss(tag, customName){
+    // sessionにカスタム情報をセット
+    window.sessionStorage.setItem([tag],[customName]);
+    // メニューにavtiveクラスを付与
     $("[class*='menu-"+ tag +"-']").removeClass('active');
-    $(selector).addClass('active');
-  }
-  // メニューをクリック直後にstyleを反映させるための処理
-  function refreshMarkdown(){
+    $(".menu-"+ tag +"-"+ customName).addClass('active');
+    // メニューをクリック直後にstyleを反映させるための処理
     var tmp = $('#output-markdown-contents').html();
     $('#output-markdown-contents').html(tmp);
   }

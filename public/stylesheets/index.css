@@ -25,6 +25,9 @@
   margin-left: 54%;
   margin-top: 20px;
 }
-#page-button a {
+[id*="-button"] a {
+  color: #FFF;
+}
+[id*="-button"] a:hover {
   color: #FFF;
 }

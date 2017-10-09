@@ -23,7 +23,8 @@
     <!-- /ヘッダー -->
 
     <div ng-controller="markdownAreaCtrl">
-      <button id="page-button" class="ui green button"><a ng-href="{{url}}">Markdownをページで表示する</a></button>
+      <button id="page-button" class="ui green button" ng-click="pageButtonClick()">Markdownをページで表示する</button>
+      <button id="pdf-button" class="ui teal button" ng-click="pdfButtonClick()">MarkdownをPDFに変換する</button>
       <!-- Markdownの入力と出力 -->
       <div class="ui vertically divided grid">
         <div class="two column row">
