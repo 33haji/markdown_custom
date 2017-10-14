@@ -1,7 +1,15 @@
 $(function() {
+  // パラメータを取得
+  var param = new Object;
+  var pair = location.search.substring(1).split('&');
+  for(var i = 0; pair[i]; i++) {
+      var kv = pair[i].split('=');
+      param[kv[0]]=kv[1];
+  }
+
   // errorメッセージ
-  var errorMessage = $.cookie('errorMessage');
-  if (errorMessage) {
+  var errorMessage = decodeURIComponent(param.errorMessage);
+  if (errorMessage && errorMessage != 'undefined') {
     // エラーメッセージを表示
     var errorMessageContents =
       '<div class="ui negative message">' +
@@ -9,14 +17,12 @@ $(function() {
           errorMessage +
         '</div>' +
       '</div>';
-    $('#message').innerHTML = errorMessageContents;
-    // Cookieから要素を削除
-    $.removeCookie('errorMessage');
+    $('#message').append(errorMessageContents);
   }
 
   // successメッセージ
-  var successMessage = $.cookie('successMessage');
-  if (successMessage) {
+  var successMessage = decodeURIComponent(param.successMessage);
+  if (successMessage && successMessage != 'undefined') {
     // エラーメッセージを表示
     var successMessageContents =
       '<div class="ui success message">' +
@@ -25,7 +31,5 @@ $(function() {
         '</div>' +
       '</div>';
     $('#message').append(successMessageContents);
-    // Cookieから要素を削除
-    $.removeCookie('successMessage');
   }
 });

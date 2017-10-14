@@ -26,17 +26,14 @@ router.post('/pdf', function(req, res, next) {
       lowquality: true
     }, function(code, signal) {
       // ダウンロード処理
-      res.attachment();
       res.download(filePath, function(err){
         if (err) {
-          res.cookie('errorMessage', 'PDFのダウンロードに失敗しました');
-          res.render('index.html');
+          res.redirect('/?errorMessage=PDFのダウンロードに失敗しました');
         }
       });
     });
   } else {
-    res.cookie('errorMessage', 'エラーが発生しました');
-    res.render('index.html');
+    res.redirect('/?errorMessage=エラーが発生しました');
   }
 });
 
