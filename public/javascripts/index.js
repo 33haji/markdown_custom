@@ -38,7 +38,7 @@ app.controller('markdownAreaCtrl', function($scope) {
   function createPageUrl() {
     var param = '?';
     // Markdownのhtmlをパラメータに追加
-    param += 'mdHtml=' + escape($scope.outputMarkdown);
+    param += 'mdHtml=' + encodeURIComponent($scope.outputMarkdown);
     // custom情報をパラメータに追加
     $.each(customItems, function(index, tag) {
       param += '&' + tag + '=' + tag + '-' + window.sessionStorage.getItem([tag]);

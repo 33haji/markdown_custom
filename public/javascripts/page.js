@@ -9,7 +9,7 @@ $(function(){
   // htmlを取得
   var html = param.mdHtml;
   // 表示
-  $('#markdown-contents').html(unescape(html));
+  $('#markdown-contents').html(decodeURIComponent(html));
   // cssを適用
   addCustomMarkdownClass(param);
 

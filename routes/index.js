@@ -17,14 +17,26 @@ router.get('/page', function(req, res, next) {
 });
 /* MarkdownをPDFに変換 */
 router.post('/pdf', function(req, res, next) {
-  // パラメータを取得し、対象のページをPDFに変換
   if (req.body.pageUrl) {
+    // パラメータを取得し、対象のページをPDFに変換
+    var filePath = 'test.pdf';
     wkhtmltopdf(req.body.pageUrl, {
-      output: 'test.pdf',
+      output: filePath,
+      encoding: 'utf8',
       lowquality: true
     }, function(code, signal) {
-      res.render('index.html');
+      // ダウンロード処理
+      res.attachment();
+      res.download(filePath, function(err){
+        if (err) {
+          res.cookie('errorMessage', 'PDFのダウンロードに失敗しました');
+          res.render('index.html');
+        }
+      });
     });
+  } else {
+    res.cookie('errorMessage', 'エラーが発生しました');
+    res.render('index.html');
   }
 });
 
