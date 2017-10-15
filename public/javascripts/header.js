@@ -95,8 +95,10 @@ $(function(){
     setTimeout(function(){
       // それぞれのtag要素に対して初期化処理を行う
       $.each(customItems, function(index, tag) {
-        window.sessionStorage.setItem([tag],['default']);
-        $(".menu-"+ tag +"-default").addClass('active');
+        // sessionから情報を取得
+        var customName = window.sessionStorage.getItem([tag]);
+        if (!customName) customName = 'default'; 
+        $(".menu-"+ tag +"-" + customName).addClass('active');
       });
     }, 100);
   }

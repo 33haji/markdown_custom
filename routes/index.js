@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var wkhtmltopdf = require('wkhtmltopdf');
-var os = require('os');
+var fs = require('fs');
 
 /* ヘッダー */
 router.get('/header', function(req, res, next) {
@@ -19,7 +19,7 @@ router.get('/page', function(req, res, next) {
 router.post('/pdf', function(req, res, next) {
   if (req.body.pageUrl) {
     // パラメータを取得し、対象のページをPDFに変換
-    var filePath = 'test.pdf';
+    var filePath = 'customMarkdown_' + Math.random().toString(36).slice(-8) + '.pdf';
     wkhtmltopdf(req.body.pageUrl, {
       output: filePath,
       encoding: 'utf8',
@@ -27,6 +27,9 @@ router.post('/pdf', function(req, res, next) {
     }, function(code, signal) {
       // ダウンロード処理
       res.download(filePath, function(err){
+        // サーバのPDFファイルは削除
+        fs.unlinkSync(filePath);
+
         if (err) {
           res.redirect('/?errorMessage=PDFのダウンロードに失敗しました');
         }
