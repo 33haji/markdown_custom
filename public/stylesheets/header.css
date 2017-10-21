@@ -1,22 +1,15 @@
 .ui.inverted.header {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-size: 3em;
-  font-weight: normal;
-}
-i.sidebar {
-  text-align: left;
-  float: left;
   font-size: 2em;
-  padding-left: 3%;
-  padding-top: 30px;
-}
-#sidebar {
-  color: #FFF;
-}
-#sidebar-area-content {
-  background-color: #f8f8f9;
+  font-weight: normal;
+  text-align: right;
+  padding-right: 40px;
   margin-top: 0;
-  position:absolute;
-  z-index: 1;
+}
+.ui.inverted.header > i.settings {
+  font-size: 1em;
+  vertical-align: inherit;
+  color: #22be34;
+}
+.ui.inverted.menu > .left.menu {
+  padding-left: 20px;
 }

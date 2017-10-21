@@ -14,23 +14,16 @@
     <script src="/javascripts/index.js"></script>
     <script src="/javascripts/message.js"></script>
   </head>
-  <body>
+  <body ng-controller="markdownAreaCtrl">
     <!-- ヘッダー -->
-    <div id="header"></div>
-    <script type="text/javascript" >
-      $(function(){
-        $("#header").load("./header");
-      });
-    </script>
+    <ng-include src="'./header'"></ng-include>
     <!-- /ヘッダー -->
 
     <!-- メッセージ -->
     <div id="message"></div>
     <!-- /メッセージ -->
 
-    <div ng-controller="markdownAreaCtrl">
-      <button id="page-button" class="ui green button" ng-click="pageButtonClick()">Markdownをページで表示する</button>
-      <button id="pdf-button" class="ui teal button" ng-click="pdfButtonClick()">MarkdownをPDFに変換する</button>
+    <div>
       <!-- Markdownの入力と出力 -->
       <div class="ui vertically divided grid">
         <div class="two column row">

@@ -1,92 +1,56 @@
-/* サイドバー */
+/* headerメニュー */
 $(function(){
-  // ハンバーガーメニューの処理
-  $("#sidebar-area-content").hide();
-  $("#sidebar").on('click', function(){
-    if ($("#sidebar-area-content").css('display') == 'none') {
-        $("#sidebar-area-content").slideDown('fast');
+  // headerメニューのclickイベント
+  $("[id*='-menu'] > [class*='-menu-button']").on('click touchend', function() {
+    var menuName =  $(this).parent().attr("id").split('-')[0];
+    if (!$("#" + menuName + "-menu").hasClass('active')) {
+      $("#" + menuName + "-menu").addClass('active');
+      $("#" + menuName + "-contents").slideDown('fast');
     } else {
-        $("#sidebar-area-content").slideUp('fast');
+      $("#" + menuName + "-menu").removeClass('active');
+      $("#" + menuName + "-contents").slideUp('fast');
     }
   });
+  // メニュー外をクリックした時にメニューを閉じる
   $(document).on('click touchend', function(event) {
-    // メニュー外をクリックした時にメニューを閉じる
-    if (!$(event.target).closest('#sidebar-area-content').length
-        && !$(event.target).closest('#sidebar').length) {
-      $("#sidebar-area-content").slideUp('fast');
-    }
+    var headerMenuNames = ['output', 'custom'];
+    $.each(headerMenuNames, function(index, menuName) {
+      if (!$(event.target).closest("#" + menuName + "-menu").length
+          && !$(event.target).closest("#" + menuName + "-contents").length) {
+        $("#" + menuName + "-menu").removeClass('active');
+        $("#" + menuName + "-contents").slideUp('fast');
+      }
+    })
   });
 
-  // ハンバーガーメニュー内のメニューの処理
-  $(".ui.dropdown").hover(function(){
-    var element = $("#menu-" + $(this).data("element"));
-    if (element.css('display') == 'none') {
-        element.show();
-    } else {
-        element.hide();
-    }
-  });
-
-  // メニューの処理を実装
+  // "CUSTOM"メニューの処理を実装
   // 初期化処理
   initializeCustomMenu();
-  // 見出し1(h1)
-  $(".menu-h1-default").on('click', function(){
-    editMarkdownCss("h1", "default");
+
+  // clickイベント
+  $("[class*='menu-']").on('click', function(){
+    var element = $(this).data("element");
+    var tag =  element.split('-')[0];
+    var customName = element.split('-')[1];
+    editMarkdownCss(tag, customName);
   });
-  $(".menu-h1-red").on('click', function(){
-    editMarkdownCss("h1", "red");
-  });
-  $(".menu-h1-underline").on('click', function(){
-    editMarkdownCss("h1", "underline");
-  });
-  $(".menu-h1-leftLine").on('click', function(){
-    editMarkdownCss("h1", "leftLine");
-  });
-  // 見出し2(h2)
-  $(".menu-h2-default").on('click', function(){
-    editMarkdownCss("h2", "default");
-  });
-  $(".menu-h2-blue").on('click', function(){
-    editMarkdownCss("h2", "blue");
-  });
-  $(".menu-h2-underline").on('click', function(){
-    editMarkdownCss("h2", "underline");
-  });
-  $(".menu-h2-leftLine").on('click', function(){
-    editMarkdownCss("h2", "leftLine");
-  });
-  // コード
-  $(".menu-code-default").on('click', function(){
-    editMarkdownCss("code", "default");
-  });
-  $(".menu-code-red").on('click', function(){
-    editMarkdownCss("code", "red");
-  });
-  $(".menu-code-green").on('click', function(){
-    editMarkdownCss("code", "green");
-  });
-  $(".menu-code-blue").on('click', function(){
-    editMarkdownCss("code", "blue");
-  });
-  // 強調
-  $(".menu-strong-default").on('click', function(){
-    editMarkdownCss("strong", "default");
-  });
-  $(".menu-strong-underline").on('click', function(){
-    editMarkdownCss("strong", "underline");
-  });
-  $(".menu-strong-red").on('click', function(){
-    editMarkdownCss("strong", "red");
-  });
-  $(".menu-strong-background").on('click', function(){
-    editMarkdownCss("strong", "background");
-  });
+
   /**
    * カスタムメニューの初期化処理
    * @return void
    */
   function initializeCustomMenu(){
+    // 画面読み込み時は隠す
+    $("[id*='menu-']").hide();
+    // mouseover時のイベント
+    $("[id*='custom-contents-']").hover(function(){
+      var element = $("#menu-" + $(this).data("element"));
+      if (element.css('display') == 'none') {
+          element.show();
+      } else {
+          element.hide();
+      }
+    });
     // custom要素を設定ファイルから取得
     customItems = [];
     $.getJSON("javascripts/conf/customMarkdownItems.json").done(function(data){
@@ -97,7 +61,7 @@ $(function(){
       $.each(customItems, function(index, tag) {
         // sessionから情報を取得
         var customName = window.sessionStorage.getItem([tag]);
-        if (!customName) customName = 'default'; 
+        if (!customName) customName = 'default';
         $(".menu-"+ tag +"-" + customName).addClass('active');
       });
     }, 100);

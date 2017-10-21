@@ -21,10 +21,6 @@
 }
 
 /* ボタン */
-#page-button {
-  margin-left: 54%;
-  margin-top: 20px;
-}
 [id*="-button"] a {
   color: #FFF;
 }

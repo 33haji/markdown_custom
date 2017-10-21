@@ -1,83 +1,72 @@
 <link rel='stylesheet' href='/stylesheets/header.css' />
 <script src="/javascripts/header.js"></script>
 
-<div class="ui inverted vertical masthead center aligned segment">
-  <a id ="sidebar" href="#"><i class="sidebar icon"></i></a>
-  <h1 class="ui inverted header">Custom Markdown</h1>
+<div class="ui vertical">
+  <div class="ui inverted menu">
+    <!-- headerメニュー -->
+    <div class="left menu">
+      <!-- CUSTOM -->
+      <div id="custom-menu" class="ui dropdown green item">
+        <span class="custom-menu-button">CUSTOM<i class="dropdown icon"></i></span>
+        <div id="custom-contents" class="menu">
+          <!-- 見出し1 -->
+          <div id="custom-contents-h1" class="ui left pointing dropdown link item" data-element="h1">
+            <i class="right dropdown icon"></i><span class="text">見出し1</span>
+            <div id="menu-h1" class="right menu">
+              <a class="item menu-h1-default" data-element="h1-default"><h1>Default</h1></a>
+              <a class="item menu-h1-red" data-element="h1-red"><h1 style="color: #db2828;">Red</h1></a>
+              <a class="item menu-h1-underline" data-element="h1-underline"><h1 style="text-decoration: underline;">UnderLine</h1></a>
+              <a class="item menu-h1-leftLine" data-element="h1-leftLine"><h1 style="border-left: solid 5px #f2711c; padding: 0.25em 0.5em;">LeftLine</h1></a>
+            </div>
+          </div>
+          <!-- /見出し1 -->
+          <!-- 見出し2 -->
+          <div id="custom-contents-h2" class="ui left pointing dropdown link item" data-element="h2">
+            <i class="right dropdown icon"></i><span class="text">見出し2</span>
+            <div id="menu-h2" class="right menu">
+              <a class="item menu-h2-default" data-element="h2-default"><h2>Default</h2></a>
+              <a class="item menu-h2-blue" data-element="h2-blue"><h2 style="color: #2185d0;">Blue</h2></a>
+              <a class="item menu-h2-underline" data-element="h2-underline"><h2 style="text-decoration: underline;">UnderLine</h2></a>
+              <a class="item menu-h2-leftLine" data-element="h2-leftLine"><h2 style="border-left: solid 5px #00b5ad; padding: 0.25em 0.5em;">LeftLine</h2></a>
+            </div>
+          </div>
+          <!-- /見出し2 -->
+          <!-- コード -->
+          <div id="custom-contents-code" class="ui left pointing dropdown link item" data-element="code">
+            <i class="right dropdown icon"></i><span class="text">コード</span>
+            <div id="menu-code" class="right menu">
+              <a class="item menu-code-default" data-element="code-default"><p style="background-color: #f7f7f7;padding: 9.5px;">Default</p></a>
+              <a class="item menu-code-red" data-element="code-red"><p style="background-color: #FFFAFA;color: #db2828;padding: 9.5px;">Red</p></a>
+              <a class="item menu-code-green" data-element="code-green"><p style="background-color: #F5FFFA;color: #21ba45;padding: 9.5px;">Green</p></a>
+              <a class="item menu-code-blue" data-element="code-blue"><p style="background-color: #F8F8FF;color: #2185d0;padding: 9.5px;">Blue</p></a>
+            </div>
+          </div>
+          <!-- /コード -->
+          <!-- 強調 -->
+          <div id="custom-contents-strong" class="ui left pointing dropdown link item" data-element="strong">
+            <i class="right dropdown icon"></i><span class="text">強調</span>
+            <div id="menu-strong" class="right menu">
+              <a class="item menu-strong-default" data-element="strong-default"><strong>Default</strong></a>
+              <a class="item menu-strong-underline" data-element="strong-underline"><strong style="border-bottom: 2px solid #ff3333;">Underline</strong></a>
+              <a class="item menu-strong-red" data-element="strong-red"><strong style="color: #db2828;">Red</strong></a>
+              <a class="item menu-strong-background" data-element="strong-background"><strong style="background-color: #ffff66;">Background</strong></a>
+            </div>
+          </div>
+          <!-- /強調 -->
+        </div>
+      </div>
+      <!-- /CUSTOM -->
+      <!-- OUTPUT -->
+      <div id="output-menu" class="ui dropdown green item">
+        <span class="output-menu-button">OUTPUT<i class="dropdown icon"></i></span>
+        <div id="output-contents" class="menu">
+          <a id="page-button" class="item" ng-click="pageButtonClick()">WebPage</a>
+          <a id="pdf-button" class="item" ng-click="pdfButtonClick()">Pdf</a>
+        </div>
+      </div>
+      <!-- /OUTPUT -->
+    </div>
+    <!-- /headerメニュー -->
+    <h1 class="ui inverted header"><i class="settings icon" />Custom Markdown</h1>
+  </div>
 </div>
-
-<!-- サイドバー内部のコンテンツ -->
-<div id="sidebar-area-content" class="ui vertical menu">
-  <!-- 見出し1 -->
-  <div class="ui left pointing dropdown link item" data-element="h1">
-    <i class="dropdown icon"></i>
-    見出し1
-    <div id="menu-h1" class="menu">
-      <a class="item menu-h1-default"><h1>Default</h1></a>
-      <a class="item menu-h1-red"><h1 style="color: #db2828;">Red</h1></a>
-      <a class="item menu-h1-underline"><h1 style="text-decoration: underline;">UnderLine</h1></a>
-      <a class="item menu-h1-leftLine"><h1 style="border-left: solid 5px #f2711c; padding: 0.25em 0.5em;">LeftLine</h1></a>
-    </div>
-  </div>
-  <!-- /見出し1 -->
-
-  <!-- 見出し2 -->
-  <div class="ui left pointing dropdown link item" data-element="h2">
-    <i class="dropdown icon"></i>
-    見出し2
-    <div id="menu-h2" class="menu">
-      <a class="item menu-h2-default"><h2>Default</h2></a>
-      <a class="item menu-h2-blue"><h2 style="color: #2185d0;">Blue</h2></a>
-      <a class="item menu-h2-underline"><h2 style="text-decoration: underline;">UnderLine</h2></a>
-      <a class="item menu-h2-leftLine"><h2 style="border-left: solid 5px #00b5ad; padding: 0.25em 0.5em;">LeftLine</h2></a>
-    </div>
-  </div>
-  <!-- /見出し2 -->
-
-  <!-- コード -->
-  <div class="ui left pointing dropdown link item" data-element="code">
-    <i class="dropdown icon"></i>
-    コード
-    <div id="menu-code" class="menu">
-      <a class="item menu-code-default"><p style="background-color: #f7f7f7;padding: 9.5px;">Default</p></a>
-      <a class="item menu-code-red"><p style="background-color: #FFFAFA;color: #db2828;padding: 9.5px;">Red</p></a>
-      <a class="item menu-code-green"><p style="background-color: #F5FFFA;color: #21ba45;padding: 9.5px;">Green</p></a>
-      <a class="item menu-code-blue"><p style="background-color: #F8F8FF;color: #2185d0;padding: 9.5px;">Blue</p></a>
-    </div>
-  </div>
-  <!-- /コード -->
-
-  <!-- 強調 -->
-  <div class="ui left pointing dropdown link item" data-element="strong">
-    <i class="dropdown icon"></i>
-    強調
-    <div id="menu-strong" class="menu">
-      <a class="item menu-strong-default"><strong>Default</strong></a>
-      <a class="item menu-strong-underline"><strong style="border-bottom: 2px solid #ff3333;">Underline</strong></a>
-      <a class="item menu-strong-red"><strong style="color: #db2828;">Red</strong></a>
-      <a class="item menu-strong-background"><strong style="background-color: #ffff66;">Background</strong></a>
-    </div>
-  </div>
-  <!-- /強調 -->
-
-  <!-- 箇条書き -->
-  <div class="ui left pointing dropdown link item" data-element="disc">
-    <i class="dropdown icon"></i>
-    箇条書き
-    <div id="menu-disc" class="menu">
-      <a class="item menu-disc-default">
-        <ul>
-          <li>text1</li>
-          <ul>
-            <li>text2</li>
-            <ul>
-              <li>text3</li>
-            </ul>
-          </ul>
-        </ul>
-      </a>
-    </div>
-  </div>
-  <!-- /箇条書き -->
-</div>
-<!-- /サイドバー内部のコンテンツ -->
