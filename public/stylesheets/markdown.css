@@ -1,3 +1,10 @@
+pre {
+	white-space: pre-wrap;
+}
+code {
+  word-wrap: break-word;
+}
+
 /* 見出し1 */
 .h1-red {
   color: #db2828;

@@ -46,7 +46,7 @@ app.controller('markdownAreaCtrl', function($scope) {
   function createPageUrl() {
     var param = '?';
     // Markdownのhtmlをパラメータに追加
-    param += 'mdHtml=' + encodeURIComponent($scope.outputMarkdown);
+    param += 'mdHtml=' + encodeURIComponent(escape($scope.outputMarkdown));
     // custom情報をパラメータに追加
     $.each(customItems, function(index, tag) {
       param += '&' + tag + '=' + tag + '-' + window.sessionStorage.getItem([tag]);
@@ -58,7 +58,7 @@ app.controller('markdownAreaCtrl', function($scope) {
 
 $(function() {
   customItems = [];
-  
+
   // 初期化処理
   initialize();
 
@@ -94,10 +94,17 @@ $(function() {
    * @param {string} customName 要素名(例：default)
    */
   function addAndRemoveClass(tag, customName) {
-    $('.output-markdown ' + tag).removeClass(function(index, className) {
+    // codeの場合のみpre属性に適用する
+    var targetClass = ''
+    if (tag === 'code') {
+      targetClass = '.output-markdown pre';
+    } else {
+      targetClass = '.output-markdown ' + tag;
+    }
+    $(targetClass).removeClass(function(index, className) {
       reg = new RegExp('\\b'+ tag +'-\\S+', 'g');
       return (className.match(reg) || []).join(' ');
     });
-    $('.output-markdown ' + tag).addClass(tag + '-' + customName);
+    $(targetClass).addClass(tag + '-' + customName);
   }
 });

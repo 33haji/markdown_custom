@@ -9,7 +9,7 @@ $(function(){
   // htmlを取得
   var html = param.mdHtml;
   // 表示
-  $('#markdown-contents').html(decodeURIComponent(html));
+  $('#markdown-contents').html(unescape(decodeURIComponent(html)));
   // cssを適用
   addCustomMarkdownClass(param);
 
@@ -39,11 +39,18 @@ $(function(){
    * @param {string} tag          タグ(例：h1)
    * @param {string} classElement 要素名(例：default)
    */
-  function addAndRemoveClass(tag, classElement) {
-    $('#markdown-contents ' + tag).removeClass(function(index, className) {
+  function addAndRemoveClass(tag, customName) {
+    // codeの場合のみpre属性に適用する
+    var targetClass = ''
+    if (tag === 'code') {
+      targetClass = '#markdown-contents pre';
+    } else {
+      targetClass = '#markdown-contents ' + tag;
+    }
+    $(targetClass).removeClass(function(index, className) {
       reg = new RegExp('\\b'+ tag +'-\\S+', 'g');
       return (className.match(reg) || []).join(' ');
     });
-    $('#markdown-contents ' + tag).addClass(classElement);
+    $(targetClass).addClass(customName);
   }
 });
