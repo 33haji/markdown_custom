@@ -70,6 +70,9 @@ $(function() {
     });
   });
 
+  // inputMarkdown(textarea)とoutputMarkdwonのサイズを動的に変更する
+  autosize($('textarea'));
+
   /**
    * 初期化処理
    * @return {void}
