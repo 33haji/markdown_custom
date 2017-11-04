@@ -15,5 +15,9 @@
     "semantic-ui": "^2.2.13",
     "serve-favicon": "^2.4.5",
     "wkhtmltopdf": "^0.3.4"
+  },
+  "engines": {
+    "node": "v8.4.X",
+    "npm": "5.3.X"
   }
 }
