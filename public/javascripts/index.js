@@ -34,7 +34,7 @@ app.controller('markdownAreaCtrl', function($scope) {
     inputPageUrl.setAttribute('name', 'pageUrl');
     inputPageUrl.setAttribute('value', pageUrl);
     form.appendChild(inputPageUrl);
-    form.setAttribute('action', 'https://' + location.host + '/pdf');
+    form.setAttribute('action', 'http://' + location.host + '/pdf');
     form.setAttribute('method', 'POST');
     form.submit();
   };
@@ -52,7 +52,7 @@ app.controller('markdownAreaCtrl', function($scope) {
       param += '&' + tag + '=' + tag + '-' + window.sessionStorage.getItem([tag]);
     });
 
-    return 'https://' + location.host + '/page' + param;
+    return 'http://' + location.host + '/page' + param;
   }
 });
 
