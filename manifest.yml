@@ -1,0 +1,6 @@
+applications:
+- name: custom-markdown
+  command: node ./bin/www
+  domain: mybluemix.net
+  instances: 1
+  memory: 256M
