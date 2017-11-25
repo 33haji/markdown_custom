@@ -28,16 +28,21 @@
       <!-- /メッセージ -->
 
       <!-- Markdownの入力と出力 -->
-      <div class="ui vertically divided grid">
-        <div class="two column row">
-          <div class="column">
-            <div class="input-markdown">
-              <textarea placeholder="input text..." ng-model="inputMarkdown" ng-init="init()"></textarea>
+      <div class="ui segment no-margin-top">
+        <div class="ui dimmer">
+          <div class="ui large text loader">Downloading...</div>
+        </div>
+        <div class="ui vertically divided grid">
+          <div class="two column row">
+            <div class="column">
+              <div class="input-markdown">
+                <textarea placeholder="input text..." ng-model="inputMarkdown" ng-init="init()"></textarea>
+              </div>
             </div>
-          </div>
-          <div class="column">
-            <div class="output-markdown">
-              <div ng-bind-html="outputMarkdown" id="output-markdown-contents"></div>
+            <div class="column">
+              <div class="output-markdown">
+                <div ng-bind-html="outputMarkdown" id="output-markdown-contents"></div>
+              </div>
             </div>
           </div>
         </div>

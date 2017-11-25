@@ -24,6 +24,9 @@ app.controller('markdownAreaCtrl', function($scope) {
 
   // pdf-buttonのclickイベント
   $scope.pdfButtonClick = function() {
+    // loadingを表示 & 一定時間後に解除
+    displayAndReleaseLoading();
+
     // ページで表示用のurlを取得
     var pageUrl = createPageUrl();
     // POSTでデータを送信
@@ -53,6 +56,19 @@ app.controller('markdownAreaCtrl', function($scope) {
     });
 
     return 'http://' + location.host + '/page' + param;
+  }
+
+  /**
+   * loadingを表示 & 一定時間後に解除する
+   * @return {void}
+   */
+  function displayAndReleaseLoading () {
+    // loadingを表示
+    $('.ui.dimmer').addClass('active');
+    // 一定時間後に解除する(12秒後)
+    setTimeout(function () {
+      $('.ui.dimmer').removeClass('active');
+    }, 12000);
   }
 });
 

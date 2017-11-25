@@ -28,3 +28,11 @@
 [id*="-button"] a:hover {
   color: #FFF;
 }
+
+/* loader */
+.ui.large.text.loader {
+  top: 80px;
+}
+.ui.segment.no-margin-top {
+  margin-top: 0;
+}
