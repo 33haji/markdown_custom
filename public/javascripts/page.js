@@ -1,4 +1,4 @@
-$(function(){
+$(function() {
   // パラメータを取得
   var param = new Object;
   var pair = location.search.substring(1).split('&');
@@ -8,10 +8,16 @@ $(function(){
   }
   // htmlを取得
   var html = param.mdHtml;
+
   // 表示
   $('#markdown-contents').html(unescape(decodeURIComponent(html)));
   // cssを適用
   addCustomMarkdownClass(param);
+
+  // 描画時間を待ってからphantom-html-to-pdfにPDF変換開始を知らせる
+  setTimeout(function() {
+    window.PHANTOM_HTML_TO_PDF_READY = true;
+  }, 10000);
 
   /**
    * 各要素ごとにclssを追加(どのclassかという情報はパラメータから取得)

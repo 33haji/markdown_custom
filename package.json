@@ -13,9 +13,10 @@
     "express": "^4.15.5",
     "gulp": "^3.9.1",
     "morgan": "^1.9.0",
+    "phantom-html-to-pdf": "^0.5.5",
+    "phantomjs-prebuilt": "^2.1.16",
     "semantic-ui": "^2.2.13",
-    "serve-favicon": "^2.4.5",
-    "wkhtmltopdf": "^0.3.4"
+    "serve-favicon": "^2.4.5"
   },
   "engines": {
     "node": "v8.4.X",
