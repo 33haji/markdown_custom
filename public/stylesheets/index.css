@@ -33,6 +33,7 @@
 .ui.large.text.loader {
   top: 80px;
 }
-.ui.segment.no-margin-top {
-  margin-top: 0;
+.ui.segment.no-margin-padding {
+  margin: 0;
+  padding: 0;
 }

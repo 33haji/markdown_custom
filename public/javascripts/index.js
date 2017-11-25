@@ -104,7 +104,7 @@ $(function() {
         var customName = window.sessionStorage.getItem([tag]);
         addAndRemoveClass(tag, customName);
       });
-    }, 200);
+    }, 500);
   }
 
   /**

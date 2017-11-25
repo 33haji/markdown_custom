@@ -30,6 +30,7 @@ $(function(){
   // clickイベント
   $("[class*='menu-']").on('click', function(){
     var element = $(this).data("element");
+    if (!element) return;
     var tag =  element.split('-')[0];
     var customName = element.split('-')[1];
     editMarkdownCss(tag, customName);
@@ -64,7 +65,7 @@ $(function(){
         if (!customName) customName = 'default';
         $(".menu-"+ tag +"-" + customName).addClass('active');
       });
-    }, 100);
+    }, 500);
   }
   /**
    * カスタム情報変更処理
