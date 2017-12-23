@@ -1,62 +1,20 @@
 $(function() {
   // パラメータを取得
-  var param = new Object;
-  var pair = location.search.substring(1).split('&');
-  for(var i = 0; pair[i]; i++) {
-      var kv = pair[i].split('=');
+  const param = new Object;
+  let pair = location.search.substring(1).split('&');
+  for(let i = 0; pair[i]; i++) {
+      let kv = pair[i].split('=');
       param[kv[0]]=kv[1];
   }
-  // htmlを取得
-  var html = param.mdHtml;
-
-  // 表示
+  // htmlを取得して表示
+  const html = param.mdHtml;
   $('#markdown-contents').html(unescape(decodeURIComponent(html)));
-  // cssを適用
-  addCustomMarkdownClass(param);
+  // highlight.js用に読み込むcssのパスを変更する
+  const style = param.style;
+  $('#highlightStyle').attr('href', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/' + style + '.min.css');
 
   // 描画時間を待ってからphantom-html-to-pdfにPDF変換開始を知らせる
   setTimeout(function() {
     window.PHANTOM_HTML_TO_PDF_READY = true;
-  }, 10000);
-
-  /**
-   * 各要素ごとにclssを追加(どのclassかという情報はパラメータから取得)
-   */
-  function addCustomMarkdownClass(param) {
-    // 見出し1(h1)
-    var h1 = param.h1;
-    addAndRemoveClass('h1', h1);
-
-    // 見出し2(h2)
-    var h2 = param.h2;
-    addAndRemoveClass('h2', h2);
-
-    // コード
-    var code = param.code;
-    addAndRemoveClass('code', code);
-
-    // 強調
-    var strong = param.strong;
-    addAndRemoveClass('strong', strong);
-  }
-
-  /**
-   * 既存のclassを削除し、新たなmarkdown用のクラスを付与する
-   * @param {string} tag          タグ(例：h1)
-   * @param {string} classElement 要素名(例：default)
-   */
-  function addAndRemoveClass(tag, customName) {
-    // codeの場合のみpre属性に適用する
-    var targetClass = ''
-    if (tag === 'code') {
-      targetClass = '#markdown-contents pre';
-    } else {
-      targetClass = '#markdown-contents ' + tag;
-    }
-    $(targetClass).removeClass(function(index, className) {
-      reg = new RegExp('\\b'+ tag +'-\\S+', 'g');
-      return (className.match(reg) || []).join(' ');
-    });
-    $(targetClass).addClass(customName);
-  }
+  }, 4000);
 });

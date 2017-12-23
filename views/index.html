@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-    <!-- textareaサイズを自動変換するためのライブラリ -->
+    <!-- ↓ textareaサイズを自動変換するためのライブラリ -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/4.0.0/autosize.min.js"></script>
     <script src="/semantic/dist/semantic.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
@@ -16,6 +16,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-sanitize.min.js"></script>
     <script src="/javascripts/index.js"></script>
     <script src="/javascripts/message.js"></script>
+    <!-- codeにhighlightを適用するための準備 -->
+    <link rel="stylesheet" id="highlightStyle" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <!-- /codeにhighlightを適用するための準備 -->
   </head>
   <body ng-controller="markdownAreaCtrl">
     <div id="wrapper">
@@ -41,7 +46,7 @@
             </div>
             <div class="column">
               <div class="output-markdown">
-                <div ng-bind-html="outputMarkdown" id="output-markdown-contents"></div>
+                <div id="output-markdown-contents" ng-bind-html="outputMarkdown"></div>
               </div>
             </div>
           </div>

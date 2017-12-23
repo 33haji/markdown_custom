@@ -1,24 +1,34 @@
 /* 入力をMarkdownに変換 */
-var app = angular.module('indexApp', ['ngSanitize']);
+const app = angular.module('indexApp', ['ngSanitize']);
 app.controller('markdownAreaCtrl', function($scope) {
   // inputMarkdownの初期化
   $scope.init = function() {
     // sessionから初期値を取得
-    var initInputMarkdown = window.sessionStorage.getItem('inputMarkdown');
+    // outputMarkdownを取得してしまうとinputMarkdownが空になってしまう
+    const initInputMarkdown = window.sessionStorage.getItem('inputMarkdown');
     $scope.inputMarkdown = initInputMarkdown;
   }
   // inputMarkdownに文字列が入力された時の処理
   $scope.$watch('inputMarkdown', function(newValue, oldValue) {
+    // Markdown変換
+    const $html = $.parseHTML(marked(newValue));
+    setTimeout(function () {
+      // ```で囲まれたcodeのみにhighlightを適用
+      $('code', $html).each(function(i, block) {
+        if (block.innerHTML.match(/\n/) === null) return true
+        hljs.highlightBlock(block);
+      });
+      // html出力
+      $("#output-markdown-contents").html($html);
+    }, 200);
     // sessionに登録
     window.sessionStorage.setItem('inputMarkdown', $scope.inputMarkdown);
-    // Markdown変換
-    $scope.outputMarkdown = marked(newValue);
   });
 
   // page-buttonのclickイベント
   $scope.pageButtonClick = function() {
     // ページで表示用のurlを取得し、画面遷移
-    var pageUrl = createPageUrl();
+    const pageUrl = createPageUrl();
     window.location.href = pageUrl;
   };
 
@@ -28,11 +38,11 @@ app.controller('markdownAreaCtrl', function($scope) {
     displayAndReleaseLoading();
 
     // ページで表示用のurlを取得
-    var pageUrl = createPageUrl();
+    const pageUrl = createPageUrl();
     // POSTでデータを送信
-    var form = document.createElement('form');
+    const form = document.createElement('form');
     document.body.appendChild(form);
-    var inputPageUrl = document.createElement('input');
+    const inputPageUrl = document.createElement('input');
     inputPageUrl.setAttribute('type', 'hidden');
     inputPageUrl.setAttribute('name', 'pageUrl');
     inputPageUrl.setAttribute('value', pageUrl);
@@ -47,13 +57,13 @@ app.controller('markdownAreaCtrl', function($scope) {
    * @return {string} URL
    */
   function createPageUrl() {
-    var param = '?';
+    let param = '?'
     // Markdownのhtmlをパラメータに追加
-    param += 'mdHtml=' + encodeURIComponent(escape($scope.outputMarkdown));
-    // custom情報をパラメータに追加
-    $.each(customItems, function(index, tag) {
-      param += '&' + tag + '=' + tag + '-' + window.sessionStorage.getItem([tag]);
-    });
+    const mdHtml = $('#output-markdown-contents').html()
+    param += 'mdHtml=' + encodeURIComponent(escape(mdHtml));
+    // codeのhighlightに使用するstyleを追加
+    const style = window.sessionStorage.getItem('code');
+    param += '&style=' + style
 
     return 'http://' + location.host + '/page' + param;
   }
@@ -65,10 +75,10 @@ app.controller('markdownAreaCtrl', function($scope) {
   function displayAndReleaseLoading () {
     // loadingを表示
     $('.ui.dimmer').addClass('active');
-    // 一定時間後に解除する(12秒後)
+    // 一定時間後に解除する(5秒後)
     setTimeout(function () {
       $('.ui.dimmer').removeClass('active');
-    }, 12000);
+    }, 5000);
   }
 });
 
@@ -78,10 +88,10 @@ $(function() {
   // 初期化処理
   initialize();
 
-  // outputMarkdwonの値が変更された時、classを追加してstyleを適用する
+  // outputMarkdownの値が変更された時、classを追加してstyleを適用する
   $('#output-markdown-contents').on('DOMSubtreeModified propertychange', function() {
     $.each(customItems, function(index, tag) {
-      var customName = window.sessionStorage.getItem([tag]);
+      let customName = window.sessionStorage.getItem([tag]);
       addAndRemoveClass(tag, customName);
     });
   });
@@ -101,7 +111,7 @@ $(function() {
     // cssを適用する
     setTimeout(function() {
       $.each(customItems, function(index, tag) {
-        var customName = window.sessionStorage.getItem([tag]);
+        let customName = window.sessionStorage.getItem([tag]);
         addAndRemoveClass(tag, customName);
       });
     }, 500);
@@ -113,10 +123,10 @@ $(function() {
    * @param {string} customName 要素名(例：default)
    */
   function addAndRemoveClass(tag, customName) {
-    // codeの場合のみpre属性に適用する
-    var targetClass = ''
+    let targetClass = ''
     if (tag === 'code') {
-      targetClass = '.output-markdown pre';
+      // 'code'の場合はhighlight.js用に読み込むcssのパスを変更する
+      $('#highlightStyle').attr('href', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/' + customName + '.min.css')
     } else {
       targetClass = '.output-markdown ' + tag;
     }
