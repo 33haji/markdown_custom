@@ -13,10 +13,11 @@ app.controller('markdownAreaCtrl', function($scope) {
     // Markdown変換
     const $html = $.parseHTML(marked(newValue));
     setTimeout(function () {
-      // ```で囲まれたcodeのみにhighlightを適用
+      // codeタグの要素にhighlightを適用
       $('code', $html).each(function(i, block) {
-        if (block.innerHTML.match(/\n/) === null) return true
         hljs.highlightBlock(block);
+        // ``で囲まれたcodeのdisplay: blockを解除する
+        if (block.innerHTML.match(/\n/) === null) $(block).css('display', 'inline-flex');
       });
       // html出力
       $("#output-markdown-contents").html($html);
@@ -75,10 +76,10 @@ app.controller('markdownAreaCtrl', function($scope) {
   function displayAndReleaseLoading () {
     // loadingを表示
     $('.ui.dimmer').addClass('active');
-    // 一定時間後に解除する(5秒後)
+    // 一定時間後に解除する(7秒後)
     setTimeout(function () {
       $('.ui.dimmer').removeClass('active');
-    }, 5000);
+    }, 7000);
   }
 });
 

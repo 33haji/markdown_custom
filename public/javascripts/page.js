@@ -16,5 +16,5 @@ $(function() {
   // 描画時間を待ってからphantom-html-to-pdfにPDF変換開始を知らせる
   setTimeout(function() {
     window.PHANTOM_HTML_TO_PDF_READY = true;
-  }, 4000);
+  }, 6000);
 });
