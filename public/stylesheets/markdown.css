@@ -1,3 +1,5 @@
+@import url("./color.css");
+
 pre {
 	white-space: pre-wrap;
 }
@@ -5,58 +7,115 @@ code {
   word-wrap: break-word;
 }
 
-/* 見出し1 */
-.h1-red {
-  color: #db2828;
+/* text-color */
+[class*="default_black"] {
+	color: var(--black);
 }
-.h1-underline {
-  text-decoration: underline;
+[class*="default_gray"] {
+	color: var(--gray);
 }
-.h1-leftLine {
-  border-left: solid 5px #f2711c;
-  padding: 0.25em 0.5em;
+[class*="default_red"] {
+	color: var(--red);
 }
-
-/* 見出し2 */
-.h2-blue {
-  color: #2185d0;
+[class*="default_blue"] {
+	color: var(--blue);
 }
-.h2-underline {
-  text-decoration: underline;
+[class*="default_green"] {
+	color: var(--green);
 }
-.h2-leftLine {
-  border-left: solid 5px #00b5ad;
-  padding: 0.25em 0.5em;
+[class*="default_orange"] {
+	color: var(--orange);
 }
-
-/* コード */
-.code-default {
-  background-color: #f7f7f7;
-  padding: 9.5px;
+[class*="default_yellow"] {
+	color: var(--yellow);
 }
-.code-red {
-  background-color: #FFFAFA;
-  color: #db2828;
-  padding: 9.5px;
-}
-.code-green {
-  background-color: #F5FFFA;
-  color: #21ba45;
-  padding: 9.5px;
-}
-.code-blue {
-  background-color: #F8F8FF;
-  color: #2185d0;
-  padding: 9.5px;
+[class*="default_purple"] {
+	color: var(--purple);
 }
 
-/* 強調 */
-.strong-underline {
-  border-bottom: 2px solid #ff3333;
+/* underline */
+[class*="underline"] {
+	text-decoration: underline;
 }
-.strong-red {
-  color: #db2828;
+[class*="underline_black"] {
+	text-decoration-color: var(--black);
 }
-.strong-background {
-  background-color: #ffff66;
+[class*="underline_gray"] {
+	text-decoration-color: var(--gray);
+}
+[class*="underline_red"] {
+	text-decoration-color: var(--red);
+}
+[class*="underline_blue"] {
+	text-decoration-color: var(--blue);
+}
+[class*="underline_green"] {
+	text-decoration-color: var(--green);
+}
+[class*="underline_orange"] {
+	text-decoration-color: var(--orange);
+}
+[class*="underline_yellow"] {
+	text-decoration-color: var(--yellow);
+}
+[class*="underline_purple"] {
+	text-decoration-color: var(--purple);
+}
+
+/* leftLine */
+[class*="leftLine"] {
+	padding: 0.25em 0.5em;
+}
+[class*="leftLine_black"] {
+	border-left: solid 5px var(--black);
+}
+[class*="leftLine_gray"] {
+	border-left: solid 5px var(--gray);
+}
+[class*="leftLine_red"] {
+	border-left: solid 5px var(--red);
+}
+[class*="leftLine_blue"] {
+	border-left: solid 5px var(--blue);
+}
+[class*="leftLine_green"] {
+	border-left: solid 5px var(--green);
+}
+[class*="leftLine_orange"] {
+	border-left: solid 5px var(--orange);
+}
+[class*="leftLine_yellow"] {
+	border-left: solid 5px var(--yellow);
+}
+[class*="leftLine_purple"] {
+	border-left: solid 5px var(--purple);
+}
+
+/* background */
+[class*="background_"] {
+	color: var(--white);
+}
+[class*="background_black"] {
+	background-color: var(--black);
+}
+[class*="background_gray"] {
+	background-color: var(--gray);
+}
+[class*="background_red"] {
+	background-color: var(--red);
+}
+[class*="background_blue"] {
+	background-color: var(--blue);
+}
+[class*="background_green"] {
+	background-color: var(--green);
+}
+[class*="background_orange"] {
+	background-color: var(--orange);
+}
+[class*="background_yellow"] {
+	background-color: var(--yellow);
+}
+[class*="background_purple"] {
+	background-color: var(--purple);
 }
