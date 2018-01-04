@@ -76,10 +76,10 @@ app.controller('markdownAreaCtrl', function($scope) {
   function displayAndReleaseLoading () {
     // loadingを表示
     $('.ui.dimmer').addClass('active');
-    // 一定時間後に解除する(7秒後)
+    // 一定時間後に解除する(10秒後)
     setTimeout(function () {
       $('.ui.dimmer').removeClass('active');
-    }, 7000);
+    }, 10000);
   }
 });
 
